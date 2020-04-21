@@ -53,8 +53,8 @@
   - Number
     - 浮点数比较: Math.abs(0.1 + 0.2 - 0.3) < Number.EPSILON
   - String
-    - 支持码点: U+0000 ~ U+10FFFF， 但推荐只使用 U+0000 ~ U+FFFF （BMP）
-    - 存储方式: UTF8/UTF16
+    - 支持: U+0000 ~ U+10FFFF， 推荐 U+0000 ~ U+FFFF （BMP）
+    - 存储: UTF8/UTF16
   - Boolean
   - Null
   - Undifined
