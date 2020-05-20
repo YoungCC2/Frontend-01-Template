@@ -271,7 +271,7 @@ void async function (){
     
     let response =  await req.send()
     let dom = parser.parserHTML(response.body);
-    // console.log(JSON.stringify(dom,null,"     "));
+    console.log(JSON.stringify(dom));
 }();
 
 
