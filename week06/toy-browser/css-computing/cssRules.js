@@ -59,6 +59,18 @@ function compare (sp1,sp2){
 }
 
 function specificity(selector){
+    /**
+     body div a.x#y
+     [
+         {body div a},
+         {.}
+         {#}
+         {inline}
+     ]
+
+     选择的优先级 不同分为四个元素。越往后等级越高
+     
+     */
     var p = [0,0,0,0]
     var selectorParts = selector.split(" ");
     for(var part of selectorParts){
