@@ -15,10 +15,11 @@ function show() {
         for (let j = 0; j < 3; j++) {
             let s = document.createElement("div")
             s.classList.add("cell");
-            s.innerText = pattern[i][j] == 2 ? "X" :
-                pattern[i][j] == 1 ? "O" : "";
+            s.innerText = 
+                pattern[i][j] == 2 ? "❌" :
+                pattern[i][j] == 1 ? "⭕️" : "";
 
-            s.addEventListener("click", () => move(j, i))
+            s.addEventListener("click", () => userMove(j, i))
 
             pan.appendChild(s)
         }
@@ -29,10 +30,10 @@ function show() {
 
 
 
-function  move(x,y){
-    // if(pattern[y][x] !== 0){
-    //     return ;
-    // }
+function  userMove(x,y){
+    if(pattern[y][x] !== 0){
+        return ;
+    }
     pattern[y][x] = color;
 
     if(check(pattern,color)){
@@ -43,11 +44,31 @@ function  move(x,y){
 
     show()
 
-    if(willWin(pattern,color)){
-        console.log(color == 2 ? "X will win":"O will Win")
-    }
+    computerMove()
+
+    // if(willWin(pattern,color)){
+    //     console.log(color == 2 ? "X will win":"O will Win")
+    // }
 }
 
+function computerMove() {
+    let choice = bestChoice(pattern, color)
+
+    console.log(choice)
+
+    if(choice.point) {
+      pattern[choice.point[1]][choice.point[0]] = color
+
+      if(check(pattern, color, choice.point[0], choice.point[1])) {
+        alert(color === 2 ? '❌ is winner!' : '⭕️ is winner!')
+      }
+    }
+
+
+    color = 3 - color
+    show()
+  }
+  
 function clone (pattern){
     return JSON.parse(JSON.stringify(pattern))
 }
@@ -142,20 +163,22 @@ function bestChoice(pattern,color){
 
     let result = -1;
 
-    for (let i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            if (pattern[i][j] !== 0) {
+    outer: for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (pattern[i][j] !== 0) 
                 continue
-            }
             let tmp = clone(pattern)
             tmp[i][j] = color
 
-            // let opp = bestChoice(tmp, 3 - color)
-            // if ( -opp.result >= result) {
-            //     point = [j, i]
-            //     result = -opp.result
-            //     // return [j,i]
-            // }
+            let opp = bestChoice(tmp, 3 - color)
+            if ( -opp.result >= result) {
+                point = [j, i]
+                result = -opp.result
+                // return [j,i]
+            }
+
+            if(result == 1)
+                break outer;
         }
 
     }
