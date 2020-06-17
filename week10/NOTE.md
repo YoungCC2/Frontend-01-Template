@@ -3,7 +3,7 @@
 
 
 ###stylesheet
-`
+```javascript
     <style title="hello">
     a {
         color: red;
@@ -24,11 +24,11 @@
     cssRules[0].style.fontSize = '40px'
     cssRules[0].style.color = 'blue'
     </script>
-`
+```
 
-###
+###reverse
 
-`
+```javascript
   
 <div id="a">
   <span>1</span>
@@ -76,10 +76,10 @@
   reverseChildren(a)
 
 </script>
-`
+```
 
 ### range
-`
+```javascript
 <div id="a">
   123
   <span style="background-color: blueviolet;">456789</span>
@@ -96,4 +96,4 @@
 
   // range.extractContents()
 </script>
-`
+```
