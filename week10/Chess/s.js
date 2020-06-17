@@ -1,7 +1,7 @@
 let pattern = [
-    [1, 2, 0],
-    [0, 1, 0],
-    [1, 0, 2]
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
 ]
 
 
@@ -149,8 +149,25 @@ function willWin(pattern, color) {
     return null;
 }
 
+let openings = new Map();
+
+openings.set([
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ].toString() + '1', {
+    point: [1, 1],
+    result: 0
+  })
+
+
+
 function bestChoice(pattern,color){
     let point = willWin(pattern,color)
+
+    if (openings.has(pattern.toString() + color)) {
+        return openings.get(pattern.toString() + color)
+    }
 
     console.log(point)
 
