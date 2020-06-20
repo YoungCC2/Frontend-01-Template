@@ -4,9 +4,27 @@ function green() {
         lighers[i].classList.remove("light")
     }
     
-    console.log(document.getElementsByClassName("green")[0])
-    document.getElementsByClassName("green")[0].className="green"
+    document.getElementsByClassName("green")[0].classList.add("light")
 }
+
+function red() {
+    var lighers = document.getElementsByTagName("div");
+    for(var i =0;i<3;i++){
+        lighers[i].classList.remove("light")
+    }
+    
+    document.getElementsByClassName("red")[0].classList.add("light")
+}
+
+function yellow() {
+    var lighers = document.getElementsByTagName("div");
+    for(var i =0;i<3;i++){
+        lighers[i].classList.remove("light")
+    }
+    
+    document.getElementsByClassName("yellow")[0].classList.add("light")
+}
+
 
 
 function sleep(t){
@@ -20,10 +38,10 @@ function sleep(t){
 function go() {
     green()
     sleep(2).then(()=>{
-        green()
+        red()
         return sleep(5)
     }).then(()=>{
-        green()
+        yellow()
         return sleep(3)
     }).then(go)
 }
