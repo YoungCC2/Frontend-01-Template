@@ -67,7 +67,7 @@ async function findPath(map, start, end) {
     let queue = [start];
     
     let tables = new Array(10000).fill(Infinity)
-    tables[start[1]*100+start[0]] = 0
+    tables[start[1] * 100 + start[0]] = 0
 
     function distance ([x,y]) {
         return (x - end[0]) ** 2 + (y-end[1]) ** 2
@@ -99,10 +99,10 @@ async function findPath(map, start, end) {
 
     // while (queue.length) {
         while (collection.length) {
-            
-        let formStart = tables[100*y+x]
         // let [x, y] = queue.shift()  // pop    unshift / push shift
         let [x,y] =  collection.take()
+        
+        let formStart = tables[100*y+x]
 
         if (x === end[0] && y === end[1]) {
             let path = []
