@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    
+    
+    <script>
+
+        /*
+        exec() 方法在一个指定字符串中执行一个搜索匹配。返回一个结果数组或 null。
+        在设置了 global 或 sticky 标志位的情况下（如 /foo/g or /foo/y），
+        JavaScript RegExp 对象是有状态的。他们会将上次成功匹配后的位置记录在 lastIndex 属性中。
+        使用此特性，exec() 可用来对单个字符串中的多次匹配结果进行逐条的遍历（包括捕获到的匹配），
+        而相比之下， String.prototype.match() 只会返回匹配到的结果。
+
+        */
+        var source =`
+            function sleep(t){
+                return new Promise((resolve,reject)=>{
+                    setTimeout(resolve,t);
+                });
+            }
+        `
+
+        var regexp = /(function|new|return)|([\t\n\r]+)|([a-zA-Z][a-zA-Z0-9]*)|([\(\)\{\}\,\;])/g
+
+        
+        var dict = ["keywords","whitespace","identifier","punctuator"]
+        var token = null
+        var lastIndex = 0
+
+        var container = document.getElementById("container")
+
+        do {
+            lastIndex = regexp.lastIndex
+            token = regexp.exec(source)
+
+            console.log(lastIndex);
+            console.log(token[0]);
+
+            console.log("---")
+            // if(!token) break;
+
+            // let text = document.createElement("span");
+
+            // text.textContent = token[0]
+
+            // for(var i = 0;i<5;i++){
+            //     if(token[i])
+            //         text.classList.add(dict[i-1]);
+            // }
+
+            // container.appendChild(text)
+
+        } while (token);
+
+    </script>
+</body>
+</html>
